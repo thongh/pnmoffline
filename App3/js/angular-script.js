@@ -1,12 +1,25 @@
 ﻿// Code goes here
 (function () {
-    var app = angular.module("brazos", ['winjs']);
+    var app = angular.module("brazos", ['winjs', 'indexedDB'])
+        .config(function ($indexedDBProvider) {
+            $indexedDBProvider
+                .connection('TasksDB')
+                .upgradeDatabase(1, function (event, db, tx) {
+                    var objStore = db.createObjectStore("tasks", { keyPath: "id", autoIncrement: true });
+                    objStore.createIndex('permitnumber_idx', 'permitnumber', { unique: true });
+                    objStore.createIndex('title_idx', 'title', { unique: false });
+                });
+        });
 
-    app.controller("TasklistController", function () {
-        this.tasks = tasks;
-        this.addComment = function (newComment) {
-
-        }
+    app.controller("IndexedDBController", function ($scope, $indexedDB) {
+        $scope.tasks = [];
+        $indexedDB.openStore('tasks', function (store) {
+            store.getAllKeys().then(function (e) {
+                $scope.primaryKeys = e;
+                console.log("thong debug");
+                console.log($scope.primaryKeys);
+            });
+        });
     });
 
     app.controller("PanelController", function () {
@@ -65,6 +78,10 @@
 
                 this.tasks = [
                     { text: 'Learn AngularJS', done: false },
+                    { text: 'Build an app', done: false },
+                    { text: 'Build an app', done: false },
+                    { text: 'Build an app', done: false },
+                    { text: 'Build an app', done: false },
                     { text: 'Build an app', done: false }
                 ];
 
@@ -91,7 +108,7 @@
     app.directive("task", function () {
         return {
             restrict: 'E',
-            templateUrl: 'components/tasklist/task.html',
+            templateUrl: 'components/task/task.html',
             controller: function () {
 
                 this.task = {};
@@ -101,6 +118,41 @@
         };
     });
 
+    // Wins list view
+    app.directive("listView", function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/winlistview/winlistview.html',
+            controller: function () {
+                
+                this.dataArray = [];
+                dataArray = [
+                    { title: "Basic banana", text: "Low-fat frozen yogurt", picture: "images/60banana.png" },
+                    { title: "Banana blast", text: "Ice cream", picture: "images/60banana.png" },
+                    { title: "Brilliant banana", text: "Frozen custard", picture: "images/60banana.png" },
+                    { title: "Orange surprise", text: "Sherbet", picture: "images/60orange.png" },
+                    { title: "Original orange", text: "Sherbet", picture: "images/60orange.png" },
+                    { title: "Vanilla", text: "Ice cream", picture: "images/60vanilla.png" },
+                    { title: "Very vanilla", text: "Frozen custard", picture: "images/60vanilla.png" },
+                    { title: "Marvelous mint", text: "Gelato", picture: "images/60mint.png" },
+                    { title: "Succulent strawberry", text: "Sorbet", picture: "images/60strawberry.png" }
+                ];
+                
+
+                var itemList = new WinJS.Binding.List(dataArray);
+                // Create a namespace to make the data publicly
+                // accessible. 
+                var publicMembers =
+                    {
+                        itemList: itemList
+                    };
+                WinJS.Namespace.define("DataExample", publicMembers);
+                // Render this UI
+                WinJS.UI.processAll();
+            },
+            controllerAs: 'listviewCtrl'
+        };
+    });
 })();
 
 

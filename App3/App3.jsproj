@@ -58,8 +58,10 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="components\tasklist\tasklist.css" />
     <Content Include="components\tasklist\tasklist.html" />
     <Content Include="components\task\task.html" />
+    <Content Include="components\winlistview\winlistview.html" />
     <Content Include="index.html" />
     <Content Include="images\LockScreenLogo.scale-200.png" />
     <Content Include="images\SplashScreen.scale-200.png" />
@@ -68,9 +70,12 @@
     <Content Include="images\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
+    <Content Include="js\db.js" />
     <Content Include="js\main.js" />
     <Content Include="css\app.css" />
     <Content Include="js\angular-script.js" />
+    <Content Include="lib\angular-indexdb-1.1.1\angular-indexed-db.js" />
+    <Content Include="lib\angular-indexdb-1.1.1\angular-indexed-db.js.map" />
     <Content Include="lib\angular-winjs-4.0\angular-winjs.js" />
     <Content Include="lib\angularjs-1.5.8\angular.js" />
     <Content Include="lib\brazosjs-5.0\brazos-ui.css" />
