@@ -14,11 +14,20 @@
     app.controller("IndexedDBController", function ($scope, $indexedDB) {
         $scope.tasks = [];
         $indexedDB.openStore('tasks', function (store) {
-            store.getAllKeys().then(function (e) {
-                $scope.primaryKeys = e;
+
+            //store.insert({"id": "444-444-222-111","permitnumber": "1000", "title": "test permit"})
+            //    .then(function (e) {
+            //        console.log("insert to indexed db successfully");
+            //    });
+
+            store.getAll().then(function(tasks) {  
+                // Update scope
+                $scope.objects = tasks;
                 console.log("thong debug");
-                console.log($scope.primaryKeys);
+                console.log($scope.objects);
             });
+
+            
         });
     });
 
