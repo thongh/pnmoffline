@@ -58,6 +58,8 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="components\tasklist\tasklist.html" />
+    <Content Include="components\task\task.html" />
     <Content Include="index.html" />
     <Content Include="images\LockScreenLogo.scale-200.png" />
     <Content Include="images\SplashScreen.scale-200.png" />
@@ -67,7 +69,7 @@
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
     <Content Include="js\main.js" />
-    <Content Include="css\default.css" />
+    <Content Include="css\app.css" />
     <Content Include="js\angular-script.js" />
     <Content Include="lib\angular-winjs-4.0\angular-winjs.js" />
     <Content Include="lib\angularjs-1.5.8\angular.js" />
@@ -76,6 +78,8 @@
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosFooter.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosHeader.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosBody.html" />
+    <Content Include="lib\underscore-1.8.3\underscore-min.js" />
+    <Content Include="lib\underscore-1.8.3\underscore.js" />
     <Content Include="lib\winjs-4.0.1\js\base.js" />
     <Content Include="lib\winjs-4.0.1\js\ui.js" />
     <Content Include="lib\winjs-4.0.1\css\ui-light.css" />

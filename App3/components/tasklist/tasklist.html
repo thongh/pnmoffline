@@ -1,0 +1,9 @@
+﻿<div class="todo-wrapper">
+    <h2>You've got <span class="emphasis">{{tasklistCtrl.getTotalTasks()}}</span> things to do</h2>
+    <ul>
+        <li ng-repeat="task in tasklistCtrl.tasks">
+            <input type="checkbox" ng-model="task.done" />
+            <span class="done-{{task.done}}">{{task.text}}</span>
+        </li>
+    </ul>
+</div>

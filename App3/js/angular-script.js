@@ -2,8 +2,8 @@
 (function () {
     var app = angular.module("brazos", ['winjs']);
 
-    app.controller("StoreController", function () {
-        this.products = gems;
+    app.controller("TasklistController", function () {
+        this.tasks = tasks;
         this.addComment = function (newComment) {
 
         }
@@ -39,18 +39,66 @@
         }
     });
 
+    // Brazos template body
     app.directive("brazosBody", function () {
         return {
             restrict: 'E',
+            transclude: true,
             templateUrl: 'lib/brazosjs-5.0/controls/brazosTemplate/brazosBody.html'
         }
     });
 
+    // Brazos template footer
     app.directive("brazosFooter", function () {
         return {
             restrict: 'E',
             templateUrl: 'lib/brazosjs-5.0/controls/brazosTemplate/brazosFooter.html'
         }
+    });
+
+    // Task list
+    app.directive("taskList", function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/tasklist/tasklist.html',
+            controller: function () {
+
+                this.tasks = [
+                    { text: 'Learn AngularJS', done: false },
+                    { text: 'Build an app', done: false }
+                ];
+
+                this.getTotalTasks = function () {
+                    return this.tasks.length;
+                };
+
+
+                this.addTask = function (addTask) {
+                    this.tasks.push({ text: addTask, done: false });
+                    this.formTaskText = '';
+                };
+
+                this.tasks = _.filter(this.tasks, function (task) {
+                        return !task.done;
+                });
+ 
+            },
+            controllerAs: 'tasklistCtrl'
+        }
+    });
+
+    // Task
+    app.directive("task", function () {
+        return {
+            restrict: 'E',
+            templateUrl: 'components/tasklist/task.html',
+            controller: function () {
+
+                this.task = {};
+
+            },
+            controllerAs: 'taskCtrl'
+        };
     });
 
 })();
