@@ -11,7 +11,7 @@
                 });
         });
 
-    app.controller("IndexedDBController", function ($scope, $indexedDB) {
+    app.controller("IndexedDBController", ['$scope','$http','$indexedDB', function ($scope, $http, $indexedDB) {
         $scope.tasks = [];
         $indexedDB.openStore('tasks', function (store) {
 
@@ -27,9 +27,25 @@
                 console.log($scope.objects);
             });
 
+            var webserviceUrl = "http://msedgewin10:8088/mocksoap12PNMUntetheredServicesSoapSoapBinding?WSDL&interface=soap12PNMUntetheredServicesSoapSoapBinding&part=PNMUntetheredServices.wsdl";
+            $http.get(webserviceUrl).success(function (data) {
+                console.log("successfully receive data from webservice");
+                console.log(data);
+            });
+
             
         });
-    });
+    }]);
+
+    app.controller("WebserviceController", ['$http', function ($scope, $http) {
+        $scope.tasks = [];
+        var webserviceUrl = "http://msedgewin10:8088/mocksoap12PNMUntetheredServicesSoapSoapBinding?WSDL&interface=soap12PNMUntetheredServicesSoapSoapBinding&part=PNMUntetheredServices.wsdl";
+        $http.get(webserviceUrl).success(function(data) {
+            console.log("successfully receive data from webservice");
+            console.log(data);
+        });
+        
+    }]);
 
     app.controller("PanelController", function () {
         // Controller to handle tabs UI logic
