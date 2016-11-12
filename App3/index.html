@@ -1,11 +1,18 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de">
 <head>
-    <meta charset="utf-8" />
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; connect-src *" />
+    <meta http-equiv="Content-Security-Policy" content="text/html; charset=utf-8; default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; media-src *; connect-src *">-->
     <title>App3</title>
+
+    <!-- jQuery -->
+    <script src="lib/jQuery-3.1.1/jquery-3.1.1.min.js"></script> 
 
     <!-- Angular-js -->
     <script src="lib/angularjs-1.5.8/angular.js"></script>
+
+    <!-- Angular jQuery js 
+    <script src="js/angular-jquery.js"></script>-->
 
     <!-- Win-js -->
     <link href="lib/winjs-4.0.1/css/ui-light.css" rel="stylesheet" />
@@ -24,10 +31,15 @@
     <!-- Angular IndexDB -->
     <script src="lib/angular-indexdb-1.1.1/angular-indexed-db.js"></script>
 
+    <!-- Angular SOAP -->
+    <script src="lib/angular-soap-2.1.2/soapclient.js"></script>
+    <script src="lib/angular-soap-2.1.2/angular.soap.js"></script>
+
     <!-- App specific resource -->
     <link href="css/app.css" rel="stylesheet" />
     <script src="js/main.js"></script>
     <script src="js/angular-script.js"></script>
+    <script src="js/angular-webservice.js"></script>
 
 </head>
 <body class="win-type-body" ng-app="brazos">

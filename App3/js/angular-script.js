@@ -1,7 +1,9 @@
 ﻿// Code goes here
 (function () {
-    var app = angular.module("brazos", ['winjs', 'indexedDB'])
+    // Declare the angular app
+    var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap', 'webserviceHelper'])
         .config(function ($indexedDBProvider) {
+            // Initialze indexeddb for this app
             $indexedDBProvider
                 .connection('TasksDB')
                 .upgradeDatabase(1, function (event, db, tx) {
@@ -11,8 +13,12 @@
                 });
         });
 
-    app.controller("IndexedDBController", ['$scope','$http','$indexedDB', function ($scope, $http, $indexedDB) {
-        $scope.tasks = [];
+    app.controller("IndexedDBController",
+        ['$scope', '$http', '$indexedDB', 'soapService',
+            function ($scope, $http, $indexedDB, soapService) {
+
+        var _this = this;
+        _this.tasks = [];
         $indexedDB.openStore('tasks', function (store) {
 
             //store.insert({"id": "444-444-222-111","permitnumber": "1000", "title": "test permit"})
@@ -26,12 +32,10 @@
                 console.log("thong debug");
                 console.log($scope.objects);
             });
-
-            var webserviceUrl = "http://msedgewin10:8088/mocksoap12PNMUntetheredServicesSoapSoapBinding?WSDL&interface=soap12PNMUntetheredServicesSoapSoapBinding&part=PNMUntetheredServices.wsdl";
-            $http.get(webserviceUrl).success(function (data) {
-                console.log("successfully receive data from webservice");
-                console.log(data);
-            });
+           
+            // Using winjs.xhr
+            //webservice.convertCurrency();
+            soapService.getFieldCheckPermitsByUser();
 
             
         });

@@ -70,12 +70,16 @@
     <Content Include="images\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="images\StoreLogo.png" />
     <Content Include="images\Wide310x150Logo.scale-200.png" />
+    <Content Include="js\angular-jquery.js" />
+    <Content Include="js\angular-webservice.js" />
     <Content Include="js\db.js" />
     <Content Include="js\main.js" />
     <Content Include="css\app.css" />
     <Content Include="js\angular-script.js" />
     <Content Include="lib\angular-indexdb-1.1.1\angular-indexed-db.js" />
     <Content Include="lib\angular-indexdb-1.1.1\angular-indexed-db.js.map" />
+    <Content Include="lib\angular-soap-2.1.2\angular.soap.js" />
+    <Content Include="lib\angular-soap-2.1.2\soapclient.js" />
     <Content Include="lib\angular-winjs-4.0\angular-winjs.js" />
     <Content Include="lib\angularjs-1.5.8\angular.js" />
     <Content Include="lib\brazosjs-5.0\brazos-ui.css" />
@@ -83,6 +87,9 @@
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosFooter.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosHeader.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosBody.html" />
+    <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.js" />
+    <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.min.js" />
+    <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.min.map" />
     <Content Include="lib\underscore-1.8.3\underscore-min.js" />
     <Content Include="lib\underscore-1.8.3\underscore.js" />
     <Content Include="lib\winjs-4.0.1\js\base.js" />
