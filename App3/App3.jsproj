@@ -58,6 +58,9 @@
     <AppxManifest Include="package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="assets\certificates\demomachinecert.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="components\tasklist\tasklist.css" />
     <Content Include="components\tasklist\tasklist.html" />
     <Content Include="components\task\task.html" />

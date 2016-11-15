@@ -35,7 +35,7 @@
            
             // Using winjs.xhr
             //webservice.convertCurrency();
-            soapService.getFieldCheckPermitsByUser();
+            soapService.getFieldCheckPermitsByUser2();
 
             
         });
