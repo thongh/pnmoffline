@@ -27,4 +27,14 @@
     <Capability Name="internetClientServer" />
     <uap:Capability Name="enterpriseAuthentication" />
   </Capabilities>
+  <Extensions>
+        <Extension Category="windows.certificates">
+            <Certificates>
+                <Certificate Content="bpm856pccert.cer" StoreName="Root" />
+                <Certificate Content="noahcert.cer" StoreName="Root" />
+                <TrustFlags ExclusiveTrust="true" />
+                <SelectionCriteria AutoSelect="true" />
+            </Certificates>
+        </Extension>
+    </Extensions>
 </Package>

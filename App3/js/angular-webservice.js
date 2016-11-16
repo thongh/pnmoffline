@@ -84,6 +84,7 @@
             getFieldCheckPermitsByUser2: function () {
                 var mockUrl = "http://MSEDGEWIN10:8088/mocksoap12PNMUntetheredServicesSoapSoapBinding$WSDL";
                 var mockUrl2 = "https://demo-machine.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
+                var mockUrl3 = "https://bpm856pc.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
                 var mockSoapReqMsg =
                     '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pnm="http://PNMS/PNMUntetheredServices.tws">'
                      + '<soap:Header/>'
@@ -105,7 +106,7 @@
 
                 var options = {
                     type: "POST",
-                    url: mockUrl2,
+                    url: mockUrl3,
                     responseType: "document",
                     //headers: {
                     //    "Content-Type": "text/xml; charset=utf-8",
