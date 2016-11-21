@@ -1,7 +1,7 @@
 ﻿// Code goes here
 (function () {
     // Declare the angular app
-    var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap', 'webserviceHelper'])
+    var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap', 'webserviceHelper', 'idbServiceHelper'])
         .config(function ($indexedDBProvider) {
             // Initialze indexeddb for this app
             $indexedDBProvider
@@ -13,33 +13,17 @@
                 });
         });
 
-    app.controller("IndexedDBController",
-        ['$scope', '$http', '$indexedDB', 'soapService',
-            function ($scope, $http, $indexedDB, soapService) {
+    app.controller("IndexedDBController", ['$indexedDB', 'idbService',
+        function ($indexedDB, idbService) {
+            var OBJECT_STORE_NAME = 'tasks'; 
 
-        var _this = this;
-        _this.tasks = [];
-        $indexedDB.openStore('tasks', function (store) {
+            idbService.clearAll();
+            idbService.insert();
+            idbService.read();
 
-            //store.insert({"id": "444-444-222-111","permitnumber": "1000", "title": "test permit"})
-            //    .then(function (e) {
-            //        console.log("insert to indexed db successfully");
-            //    });
-
-            store.getAll().then(function(tasks) {  
-                // Update scope
-                $scope.objects = tasks;
-                console.log("thong debug");
-                console.log($scope.objects);
-            });
-           
-            // Using winjs.xhr
-            //webservice.convertCurrency();
-            soapService.getFieldCheckPermitsByUser2();
-
-            
-        });
+             
     }]);
+ 
 
     app.controller("WebserviceController", ['$http', function ($scope, $http) {
         $scope.tasks = [];

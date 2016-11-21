@@ -89,6 +89,7 @@
     <Content Include="js\angular-jquery.js" />
     <Content Include="js\angular-webservice.js" />
     <Content Include="js\db.js" />
+    <Content Include="js\idbService.js" />
     <Content Include="js\main.js" />
     <Content Include="css\app.css" />
     <Content Include="js\angular-script.js" />

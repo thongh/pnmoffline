@@ -6,7 +6,7 @@
     var app = angular.module("webserviceHelper", []);
 
 
-    app.factory("soapService", function () {
+    app.factory("soapService", ['indexedDB', function ($indexedDB) {
         // Soap WSDL url
         // sample: http://host:port/soapserviceendpoint?WSDL
         this.wsdlUrl = "";
@@ -29,6 +29,8 @@
                 // Step 3: add to Wins root trust store: type mmc and tasks > import, choose root ca store 
                 var mockUrl = "http://MSEDGEWIN10:8088/mocksoap12PNMUntetheredServicesSoapSoapBinding$WSDL";
                 var mockUrl2 = "https://demo-machine.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
+                var mockUrl3 = "https://bpm856pc.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
+                var mockUrl4 = "http://MSEDGEWIN10:8088/mockPNMUntetheredServicesSoapSoapBinding?WSDL";
                 var mockSoapReqMsg =
                     '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pnm="http://PNMS/PNMUntetheredServices.tws">'
                      + '<soap:Header/>'
@@ -43,13 +45,13 @@
                     '<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">'
                      + '<Body>'
                      + '<GetFieldCheckPermitsByUser xmlns="http://PNMS/PNMUntetheredServices.tws">'
-                     + '<loginName>[string]</loginName>'
+                     + '<loginName>thongh</loginName>'
                      + '</GetFieldCheckPermitsByUser>'
                      + '</Body>'
                      + '</Envelope>';
 
                 var mockSoapReqMsg2 =
-                    '<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pnm="http://PNMS/PNMUntetheredServices.tws">'
+                    '<soap:Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pnm="http://PNMS/PNMUntetheredServices.tws">'
                      + '<soap:Header/>'
                      + '<soap:Body>'
                      + '<pnm:GetFieldCheckPermitsByUser>'
@@ -59,12 +61,19 @@
                      + '</soap:Envelope>';
 
                 $.ajax({
-                    url: mockUrl2,
+                    url: mockUrl3,
                     type: "POST",
                     dataType: "xml",
-                    data: soapMessage,
+                    data: mockSoapReqMsg,
                     processData: false,
-                    contentType: "text/xml; charset=\"utf-8\"",
+                    //async: true,
+                    //crossDomain: true,
+                    contentType: "application/soap+xml; charset=utf-8",
+                    //headers: {
+                    //    "Content-Type": "text/xml; charset=utf-8",
+                    //   "Content-Length": mockSoapReqMsg2.length,
+                    //    "SOAPAction": "https://bpm856pc.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws/GetFieldCheckPermitsByUser"
+                    //},
                     success: function (response) {
                         console.log("successfully use jquery to call SOAP");
                         console.log(response);
@@ -140,6 +149,6 @@
 
             }
         };
-    });
+    }]);
 
 })();
