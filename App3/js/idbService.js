@@ -1,12 +1,12 @@
 ﻿/*
- * Angular module to hold methods to call web services such as SOAP or REST
+ * Angular module to hold methods to handle indexed db operations
  *
  */
 (function () {
     var app = angular.module("idbServiceHelper", ['indexedDB']);
 
 
-    app.factory("idbService", ['$scope', '$indexedDB', function ($scope, $indexedDB) {
+    app.factory("idbService", ['$indexedDB', function ($indexedDB) {
         var OBJECT_STORE_NAME = 'tasks';
 
         return {
@@ -38,9 +38,9 @@
 
                     store.getAll().then(function (tasks) {
                         // Update scope
-                        $scope.objects = tasks;
+                        //$scope.objects = tasks;
                         console.log("thong debug");
-                        console.log($scope.objects);
+                        console.log(tasks);
                     });
                 });
             }

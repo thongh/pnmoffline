@@ -1,7 +1,7 @@
 ﻿// Code goes here
 (function () {
     // Declare the angular app
-    var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap', 'webserviceHelper', 'idbServiceHelper'])
+    var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap', 'webserviceHelper', 'idbServiceHelper', 'offlineServiceHelper'])
         .config(function ($indexedDBProvider) {
             // Initialze indexeddb for this app
             $indexedDBProvider
@@ -13,13 +13,11 @@
                 });
         });
 
-    app.controller("IndexedDBController", ['$indexedDB', 'idbService',
-        function ($indexedDB, idbService) {
+    app.controller("IndexedDBController", ['$indexedDB', 'idbService', 'offlineService',
+        function ($indexedDB, idbService, offlineService) {
             var OBJECT_STORE_NAME = 'tasks'; 
 
-            idbService.clearAll();
-            idbService.insert();
-            idbService.read();
+            offlineService.persistData();
 
              
     }]);
