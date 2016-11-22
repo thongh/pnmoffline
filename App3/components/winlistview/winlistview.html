@@ -1,6 +1,5 @@
 ﻿<div id="mediumListIconTextTemplate" data-win-control="WinJS.Binding.Template">
     <div style="width: 282px; height: 70px; padding: 5px; overflow: hidden; display: -ms-grid;">
-
         <!-- Displays the "picture" field. -->
         <!-- <img data-win-bind="alt: title; src: picture"
              src="#"
@@ -16,8 +15,30 @@
     </div>
 </div>
 
-<div id="basicListView" data-win-control="WinJS.UI.ListView"
-     data-win-options="{itemDataSource : DataExample.itemList.dataSource,
-    itemTemplate: select('#mediumListIconTextTemplate'),
-    layout : {type: WinJS.UI.ListLayout}}">
+ <!-- Elements used for header and footer elements for ListView -->
+<div class="headerFooterPlaceholder">
+    <div class="header">
+        <h2 class="win-h2">Task List</h2>
+        <p>Field insepection task list</p>
+    </div>
+    <!--
+    <div class="footer">
+        <h2 class="win-h2">Task List</h2>
+        <p>Field inspection task list</p>
+    </div>-->
+</div>
+
+<!-- The declarative markup necesary for ListView instantiation -->
+<!-- Call WinJS.UI.processAll() in your initialization code -->
+<div id="basicListView"
+     class="listView win-selectionstylefilled" 
+     data-win-control="WinJS.UI.ListView"
+     data-win-options="{
+                    itemDataSource: DataExample.itemList.dataSource,
+                    itemTemplate: select('#mediumListIconTextTemplate'),
+                    header: select('.header'),
+                    selectionMode: 'none',
+                    tapBehavior: 'none',
+                    layout: { type: WinJS.UI.ListLayout }
+            }"> 
 </div>
