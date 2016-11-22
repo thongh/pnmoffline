@@ -126,7 +126,7 @@
                 //offlineService.persistData();
                 var getFieldCheckPermitsByUserPromise = soapService.getFieldCheckPermitsByUser2();
                 var getBulkInstanceDetailsPromise = soapService.getBulkInstanceDetails;
-                var renderListPromise = function (bulkInstanceDetailsReponse) {
+                var renderList = function (bulkInstanceDetailsReponse) {
                     var processDetails =  bulkInstanceDetailsReponse.response.data.processDetails;
                     for (var i = 0; i < processDetails.length; i++) {
                         dataArray[dataArray.length] = { title: processDetails[i].name, text: processDetails[i].tasks[processDetails[i].tasks.length-1].displayName };
@@ -147,7 +147,7 @@
                 getFieldCheckPermitsByUserPromise.then(getBulkInstanceDetailsPromise,
                     function (reason) {
                         Windows.UI.Popups.MessageDialog(reason).showAsync();
-                    }).then(renderListPromise, 
+                    }).then(renderList,
                     function(reason) {
                         Windows.UI.Popups.MessageDialog(reason).showAsync();
                     });
