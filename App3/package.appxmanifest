@@ -32,6 +32,8 @@
             <Certificates>
                 <Certificate Content="bpm856pccert.cer" StoreName="Root" />
                 <Certificate Content="noahcert.cer" StoreName="Root" />
+                <Certificate Content="BPMDEV_SHA2_leaf.cer" StoreName="Root" />
+                <Certificate Content="BPMDEV_SHA2_Root.cer" StoreName="Root" />
                 <Certificate Content="pnmcert.cer" StoreName="Root" />
                 <TrustFlags ExclusiveTrust="true" />
                 <SelectionCriteria AutoSelect="true" />

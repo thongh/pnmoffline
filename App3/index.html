@@ -38,21 +38,28 @@
     <!-- Bluebird -->
     <script src="lib/bluebird-3.4.6/bluebird.min.js"></script>
 
+    <!-- Angular Route -->
+    <script src="lib/angular-route-1.5.9/angular-route.min.js"></script>
+
+    <!-- Rachet -->
+    <link href="lib/ratchet-v2.0.2/css/ratchet.css" rel="stylesheet" />
+
     <!-- App specific resource -->
     <link href="css/app.css" rel="stylesheet" />
     <script src="js/main.js"></script>
     <script src="js/app.js"></script>
-    <script src="js/webService.js"></script>
-    <script src="js/idbService.js"></script>
-    <script src="js/offlineService.js"></script>
+    <script src="js/services/webService.js"></script>
+    <script src="js/services/idbService.js"></script>
+    <script src="js/services/offlineService.js"></script>
+    <script src="js/directives/listView.js"></script>
+    <script src="js/directives/taskDetails.js"></script>
+    <script src="js/directives/appbar.js"></script>
 
 </head>
 <body class="win-type-body" ng-app="brazos">
-    <!-- Task list displays here -->    
-    <list-view></list-view>
 
-    <!-- Task details displays here -->
-    <task ng-hide="true"></task>
+    <!-- placeholder for view markup -->
+    <div ng-view=ng-view ng-animate="'slide'"></div>
 
 </body>
 </html>

@@ -34,11 +34,12 @@
      class="listView win-selectionstylefilled" 
      data-win-control="WinJS.UI.ListView"
      data-win-options="{
-                    itemDataSource: DataExample.itemList.dataSource,
+                    itemDataSource: DataExample.data.dataSource,
                     itemTemplate: select('#mediumListIconTextTemplate'),
                     header: select('.header'),
-                    selectionMode: 'none',
+                    selectionMode: 'single',
                     tapBehavior: 'none',
+                    oniteminvoked : DataExample.clickHandler,
                     layout: { type: WinJS.UI.ListLayout }
             }"> 
 </div>

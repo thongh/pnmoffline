@@ -67,7 +67,7 @@
                   resolve(instanceIDs);
               },
               function error(error) {
-                  Windows.UI.Popups.MessageDialog(error.status + " : " + error.statusText, "Status").showAsync();
+                  Windows.UI.Popups.MessageDialog("Fail to call wsdl: " + error.status + " : " + error.statusText, "Status").showAsync();
                   console.log("wsdl call error");
                   console.log(error);
                   reject(error);
@@ -133,12 +133,13 @@
                 var mockUrl2 = "https://demo-machine.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
                 var mockUrl3 = "https://bpm856pc.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL";
                 var mockUrl4 = "http://MSEDGEWIN10:8088/mockPNMUntetheredServicesSoapSoapBinding?WSDL";
+                var pnmurl = "https://albvbpmdev01.pnmr.internal.corp:9444/teamworks/webservices/PNMS/PNMUntetheredServices.tws?WSDL"
                 var mockSoapReqMsg =
                     '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:pnm="http://PNMS/PNMUntetheredServices.tws">'
                      + '<soap:Header/>'
                      + '<soap:Body>'
                      + '<pnm:GetFieldCheckPermitsByUser>'
-                     + '<pnm:loginName>thongh</pnm:loginName>'
+                     + '<pnm:loginName></pnm:loginName>'
                      + '</pnm:GetFieldCheckPermitsByUser>'
                      + '</soap:Body>'
                      + '</soap:Envelope>';
@@ -147,7 +148,7 @@
                     '<Envelope xmlns="http://www.w3.org/2003/05/soap-envelope">'
                      + '<Body>'
                      + '<GetFieldCheckPermitsByUser xmlns="http://PNMS/PNMUntetheredServices.tws">'
-                     + '<loginName>thongh</loginName>'
+                     + '<loginName></loginName>'
                      + '</GetFieldCheckPermitsByUser>'
                      + '</Body>'
                      + '</Envelope>';
@@ -157,13 +158,13 @@
                      + '<soap:Header/>'
                      + '<soap:Body>'
                      + '<pnm:GetFieldCheckPermitsByUser>'
-                     + '<pnm:loginName>thongh</pnm:loginName>'
+                     + '<pnm:loginName></pnm:loginName>'
                      + '</pnm:GetFieldCheckPermitsByUser>'
                      + '</soap:Body>'
                      + '</soap:Envelope>';
 
                 $.ajax({
-                    url: mockUrl3,
+                    url: pnmurl,
                     type: "POST",
                     dataType: "xml",
                     data: mockSoapReqMsg,
@@ -171,11 +172,12 @@
                     //async: true,
                     //crossDomain: true,
                     contentType: "application/soap+xml; charset=utf-8",
-                    //headers: {
+                    headers: {
                     //    "Content-Type": "text/xml; charset=utf-8",
+                        "Connection": "keep-alive"
                     //   "Content-Length": mockSoapReqMsg2.length,
                     //    "SOAPAction": "https://bpm856pc.corp.coutureconsulting.com:9443/teamworks/webservices/PNMS/PNMUntetheredServices.tws/GetFieldCheckPermitsByUser"
-                    //},
+                    },
                     success: function (response) {
                         console.log("successfully use jquery to call SOAP");
                         console.log(response);
@@ -186,7 +188,7 @@
 
                     },
                     error: function (error) {
-                        console.log("failed use jquery to call SOAP");
+                        console.log("tesing pnm url: failed use jquery to call SOAP");
                         console.log(error);
                     }
                 });

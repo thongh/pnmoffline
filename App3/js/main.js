@@ -46,7 +46,7 @@
 
 	function onVisibilityChanged(args) {
 		if (!document.hidden) {
-			// TODO: The app just became visible. This may be a good time to refresh the view.
+		    // TODO: The app just became visible. This may be a good time to refresh the view.
 		}
 	}
 
