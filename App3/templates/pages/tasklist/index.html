@@ -1,57 +1,47 @@
-﻿<!-- Task list displays here 
-<app-bar></app-bar>
-<list-view list-view-binding="listViewBinding"></list-view>
+﻿<!-- Task list using Bootstrap -->
+<div class="list-group-wrapper">
+    <div class="list-group">
+        {{msg}}
+        <a ng-href="#/{{instance.id}}" class="list-group-item list-group-item-action" ng-repeat="instance in instances">
+            <h5 class="list-group-item-heading">{{instance.title}}</h5>
+            <p class="list-group-item-text">{{instance.text}}</p>
+        </a>
+    </div>
+</div>
 
-<div class="listViewWrapper">
-    {{msg}}
-    <a ng-repeat="instance in instances">
-        <div>{{instance.title}}</div>
-    </a>
-</div>-->
 
 
+
+<!-- Task list using WinJS ListView Component 
 <div id="mediumListIconTextTemplate" data-win-control="WinJS.Binding.Template">
     <div style="width: 282px; height: 70px; padding: 5px; overflow: hidden; display: -ms-grid;">
-        <!-- Displays the "picture" field. -->
-        <!-- <img data-win-bind="alt: title; src: picture"
-             src="#"
-             style="width: 60px; height: 60px; margin: 5px; -ms-grid-column: 1;" />-->
         <div style="margin: 5px; -ms-grid-column: 2">
-
-            <!-- Displays the "title" field. -->
             <h4 data-win-bind="innerText: title"></h4>
-
-            <!-- Displays the "text" field. -->
             <h6 data-win-bind="innerText: text"></h6>
         </div>
     </div>
 </div>
-
-<!-- Elements used for header and footer elements for ListView -->
 <div class="headerFooterPlaceholder">
     <div class="header">
         <h2 class="win-h2">Task List</h2>
         <p>Field insepection task list</p>
     </div>
-    <!--
     <div class="footer">
         <h2 class="win-h2">Task List</h2>
         <p>Field inspection task list</p>
-    </div>-->
+    </div>-
 </div>
-
-<!-- The declarative markup necesary for ListView instantiation -->
-<!-- Call WinJS.UI.processAll() in your initialization code -->
 <div id="basicListView"
      class="listView win-selectionstylefilled"
      data-win-control="WinJS.UI.ListView"
      data-win-options="{
-                    itemDataSource: DataExample.data.dataSource,
+                    itemDataSource: ProcessInstances.data.dataSource,
                     itemTemplate: select('#mediumListIconTextTemplate'),
                     header: select('.header'),
                     selectionMode: 'single',
                     tapBehavior: 'none',
-                    oniteminvoked : DataExample.clickHandler,
+                    oniteminvoked : ProcessInstances.clickHandler,
                     layout: { type: WinJS.UI.ListLayout }
             }">
 </div>
+-->

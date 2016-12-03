@@ -28,11 +28,11 @@
 
                 })
                 // task details page
-                .when('/taskDetails',
+                .when('/:id',
                 {
-                    controller: 'TaskDetailsController',
-                    templateUrl: 'templates/pages/taskdetails/index.html'
-
+                    templateUrl: 'templates/pages/taskdetails/index.html',
+                    controller: 'taskDetailsController',
+                    controllerAs: 'taskDetailsCtrl'
                 })
                 // settings page
                 /*
@@ -68,7 +68,8 @@
                   for (var i = 0; i < processDetails.length; i++) {
                       dataArray[dataArray.length] = {
                           title: processDetails[i].name,
-                          text: processDetails[i].tasks[processDetails[i].tasks.length - 1].displayName
+                          text: processDetails[i].tasks[processDetails[i].tasks.length - 1].displayName,
+                          id: processDetails[i].piid
                       };
                   }
                   var itemList = new WinJS.Binding.List(dataArray);
@@ -76,9 +77,10 @@
                   // Return data to controller
                   $scope.instances = dataArray;
                   $scope.listViewBinding = itemList;
-                  $scope.msg = "Done";
+                  $scope.msg = "";
 
-                  WinJS.Namespace.define("DataExample", {
+                  // Define WINJS list view 
+                  WinJS.Namespace.define("ProcessInstances", {
                       data: $scope.listViewBinding,
                       clickHandler: WinJS.UI.eventHandler(function (ev) {
                           console.log("item is clicked");
@@ -100,8 +102,9 @@
     }]);
 
     // TaskDetailsController
-    app.controller("TaskDetailsController", function ($scope) {
-        // To do: add code to provide data for task details    
+    app.controller("taskDetailsController", function ($scope, $routeParams) {
+        // To do: add code to provide data for task details
+        console.log("$routeParams.id = " + $routeParams.id);
     });
  
 
