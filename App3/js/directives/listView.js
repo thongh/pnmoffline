@@ -12,9 +12,10 @@
                templateUrl: 'components/winlistview/winlistview.html',
                controller: function () {
 
+                   
                    // Define the data for list view
-                   var dataArray = [];
                    /*
+                   var dataArray = [];
                    dataArray = [
                        { title: "Basic banana", text: "Low-fat frozen yogurt", picture: "images/60banana.png" },
                        { title: "Banana blast", text: "Ice cream", picture: "images/60banana.png" },
@@ -27,15 +28,30 @@
                        { title: "Succulent strawberry", text: "Sorbet", picture: "images/60strawberry.png" }
                    ];*/
 
+                   WinJS.Namespace.define("DataExample", {
+                       data: listViewBinding,
+                       clickHandler: WinJS.UI.eventHandler(function (ev) {
+                           console.log("item is clicked");
+                       })
+                   });
+                   // Render this UI
+                   WinJS.UI.processAll();
+
+                   
+                   
+
                    //offlineService.persistData();
                    //soapService.getFieldCheckPermitsByUser();
-
-                   var getFieldCheckPermitsByUserPromise = soapService.getFieldCheckPermitsByUser2();
+                   /*
+                   var getFieldCheckPermitsByUserPromise = soapService.getFieldCheckPermitsByUserUsingAngular();
                    var getBulkInstanceDetailsPromise = soapService.getBulkInstanceDetails;
                    var renderList = function (bulkInstanceDetailsReponse) {
                        var processDetails = bulkInstanceDetailsReponse.response.data.processDetails;
                        for (var i = 0; i < processDetails.length; i++) {
-                           dataArray[dataArray.length] = { title: processDetails[i].name, text: processDetails[i].tasks[processDetails[i].tasks.length - 1].displayName };
+                           dataArray[dataArray.length] = {
+                               title: processDetails[i].name,
+                               text: processDetails[i].tasks[processDetails[i].tasks.length - 1].displayName
+                           };
                        }
                        var itemList = new WinJS.Binding.List(dataArray);
                        // Create a namespace to make the data publicly
@@ -59,10 +75,10 @@
                        function (reason) {
                            Windows.UI.Popups.MessageDialog(reason).showAsync();
                        });
-
+                   */
 
                },
-               controllerAs: 'listviewCtrl'
+               controllerAs: 'listviewDirectiveCtrl'
            };
        }]);
 })();

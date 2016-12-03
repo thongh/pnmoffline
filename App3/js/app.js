@@ -2,7 +2,7 @@
 (function () {
     // Declare the angular app
     var app = angular.module("brazos", ['winjs', 'indexedDB', 'angularSoap',
-        'webserviceHelper', 'idbServiceHelper', 'offlineServiceHelper', 'ngRoute', 'appBarDirective', 'listViewDirective', 'taskDetailsDirective'])
+        'webserviceHelper', 'idbServiceHelper', 'offlineServiceHelper', 'ngRoute', 'appBarDirective', 'taskDetailsDirective'])
         .config(function ($indexedDBProvider, $routeProvider) {
 
             // Initialze indexeddb for this app
@@ -17,11 +17,14 @@
             // Initialize the routes
             $routeProvider
                 // main route: display the tasklist
+                // main route controller: get and provide data for tasklist
                 //
                 .when('/',
                 {
-                    controller: 'RootController',
-                    templateUrl: 'templates/pages/tasklist/index.html'
+                    templateUrl: 'templates/pages/tasklist/index.html',
+                    controller: 'listViewController',
+                    controllerAs: 'listViewCtrl'
+
 
                 })
                 // task details page
@@ -48,9 +51,53 @@
 
     /* ********* CONTROLLERS ********* */
     // RootController
-    app.controller("RootController", function ($scope) {
-        // To do: add code to provide data from root scope       
-    });
+    app.controller("listViewController", ['$scope', 'idbService', 'offlineService', 'soapService', '$q',
+      function ($scope, idbService, offlineService, soapService, $q) {
+          $scope.msg = "Loading...";
+          $scope.instances = [];
+          // Define the data for list view
+          $scope.listViewBinding = new WinJS.Binding.List([]);
+          
+          // The promises
+          var getFieldCheckPermitsByUserPromise = soapService.getFieldCheckPermitsByUserUsingAngular();
+          var getBulkInstanceDetailsPromise = soapService.getBulkInstanceDetails;
+          var returnDataToController =  function (bulkInstanceDetailsReponse) {
+              return $q(function (resolve, reject) {
+                  var dataArray = [];
+                  var processDetails = bulkInstanceDetailsReponse.response.data.processDetails;
+                  for (var i = 0; i < processDetails.length; i++) {
+                      dataArray[dataArray.length] = {
+                          title: processDetails[i].name,
+                          text: processDetails[i].tasks[processDetails[i].tasks.length - 1].displayName
+                      };
+                  }
+                  var itemList = new WinJS.Binding.List(dataArray);
+
+                  // Return data to controller
+                  $scope.instances = dataArray;
+                  $scope.listViewBinding = itemList;
+                  $scope.msg = "Done";
+
+                  WinJS.Namespace.define("DataExample", {
+                      data: $scope.listViewBinding,
+                      clickHandler: WinJS.UI.eventHandler(function (ev) {
+                          console.log("item is clicked");
+                      })
+                  });
+                  // Render this UI
+                  WinJS.UI.processAll();
+              });
+          };
+
+          // Chain the promises 
+          getFieldCheckPermitsByUserPromise.then(getBulkInstanceDetailsPromise,
+              function (reason) {
+                  Windows.UI.Popups.MessageDialog(reason).showAsync();
+              }).then(returnDataToController,
+              function (reason) {
+                  Windows.UI.Popups.MessageDialog(reason).showAsync();
+              });
+    }]);
 
     // TaskDetailsController
     app.controller("TaskDetailsController", function ($scope) {
