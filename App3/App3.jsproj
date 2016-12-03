@@ -119,6 +119,7 @@
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosFooter.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosHeader.html" />
     <Content Include="lib\brazosjs-5.0\controls\brazosTemplate\brazosBody.html" />
+    <Content Include="lib\brazosjs-5.0\controls\section.html" />
     <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.js" />
     <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.min.js" />
     <Content Include="lib\jQuery-3.1.1\jquery-3.1.1.min.map" />

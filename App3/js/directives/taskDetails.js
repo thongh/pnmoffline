@@ -44,4 +44,13 @@
         }
     });
 
+    // Brazos section
+    app.directive("section", function () {
+        return {
+            restrict: 'E',
+            transclude: true,
+            templateUrl: 'lib/brazosjs-5.0/controls/section.html'
+        }
+    });
+
 })();
